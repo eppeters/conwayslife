@@ -6,4 +6,4 @@ A C++ implementation of Conway's Life for Oregon State University's Computer Sci
 Project Status
 --------------
 
-This project is currently in the design stage. To see how that's going, read initialDesign.odt.
+This project has moved past the design stage (see initialDesign.odt for the design). It is now in the implementation stage.

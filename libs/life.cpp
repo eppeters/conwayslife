@@ -9,12 +9,12 @@ namespace {
 
    int get_int (int lowBound, int highBound = 0);
 
-   int get_int (int lowBound, int highBound = 0)
+   int get_int (int lowBound, int highBound)
    {
       return 0;
    }
 
-   Config defaultConfigs[];
+   peteredw::Config * defaultConfigs;
 
    int NUM_DEFAULTS;
 }
@@ -76,7 +76,9 @@ namespace peteredw {
 
    std::string ConfigSet::name(int index) {
 
-      return;
+      std::string tempReturn = "name";
+
+      return tempReturn;
    
    }
 
@@ -84,7 +86,7 @@ namespace peteredw {
    
    }
 
-   std::string Config::get_names() {
+   std::string Config::title() {
 
       std::string tempReturn = "name";
 
@@ -92,15 +94,11 @@ namespace peteredw {
    
    }
 
-   std::string Config::name() {
-
-      std::string tempReturn = "name";
-
-      return tempReturn;
-
-   }
-
    Cell ** Config::cells() {
+
+      Cell ** temp;
+
+      return temp;
    
    }
 

@@ -1,32 +1,48 @@
 #ifndef LIFE_H_PETEREDW
 #define LIFE_H_PETEREDW
 
+#include <string>
+
 namespace peteredw {
 
-   class Game {
+   class BoardStatic {};
+
+   class NoSuchConfig{};
+
+   class Cell {
 
       public:
 
-         Game();
+         Cell(bool value);
 
-         void play();
+         bool status();
 
-         void add_config(Config newConfig, int height, int width);
+         bool next_state();
 
       private:
 
-         ConfigSet configList;
+         bool state;
 
-         int confChoice, numGens, rows, cols;
+         int count_neighbors();
+   };
 
-         void config_menu();
+   class Config {
 
-         void user_gens();
+      public:
 
-         void run_game;
+         Config(bool ** arr, std::string title, int height, int width);
 
-         void dims(int height, int width);
-   
+         std::string title();
+
+         Cell ** cells();
+
+      private:
+
+         std::string name;
+
+         Cell ** configuration;
+
+         int rows, cols;
    };
 
    class ConfigSet {
@@ -49,26 +65,7 @@ namespace peteredw {
 
          int setSize;
 
-         Config set[];
-   };
-
-   class Config {
-
-      public:
-
-         Config(bool ** arr, std::string name int height, int width);
-
-         std::string get_names();
-
-         Cell ** get_cells();
-
-      private:
-
-         std::string name;
-
-         Cell ** configuration[];
-
-         int rows, cols;
+         Config * set;
    };
 
    class Board {
@@ -92,26 +89,34 @@ namespace peteredw {
          int rows, cols;
    };
 
-   class Cell {
+
+
+   class Game {
 
       public:
 
-         Cell(bool value);
+         Game();
 
-         bool status();
+         void play();
 
-         bool next_state();
+         void add_config(Config newConfig, int height, int width);
 
       private:
 
-         bool state;
+         ConfigSet configList;
 
-         int count_neighbors();
+         int confChoice, numGens, rows, cols;
+
+         void config_menu();
+
+         void user_gens();
+
+         void run_game();
+
+         void dims(int height, int width);
+   
    };
 
-   class BoardStatic {};
-
-   class NoSuchConfig{};
 }
 
 #endif

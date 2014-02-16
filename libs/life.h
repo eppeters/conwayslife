@@ -2,8 +2,11 @@
 #define LIFE_H_PETEREDW
 
 #include <string>
+#include <vector>
 
 namespace peteredw {
+
+   class BadNeighborNum {};
 
    class BoardStatic {};
 
@@ -13,68 +16,53 @@ namespace peteredw {
 
       public:
 
+         friend class Board;
+         
+         Cell();
+
          Cell(bool value);
 
-         bool status();
-
-         bool next_state();
+         bool status() const;
 
       private:
 
+         bool next(std::vector<std::vector<Cell>> &container,
+               int rowPos, int colPos) throw(BadNeighborNum); 
+
+         int count_neighbors(
+               const std::vector<std::vector<Cell>> &container,
+               int rowPos, int colPos) const; 
+
          bool state;
 
-         int count_neighbors();
    };
 
    class Config {
 
       public:
 
-         Config(bool ** arr, std::string title, int height, int width);
+         Config();
+
+         Config(const std::vector<std::vector<bool>> &newConfig,
+                  std::string title);
 
          std::string title();
 
-         Cell ** cells();
+         std::vector<std::vector<Cell>> cells() const;
 
       private:
 
          std::string name;
 
-         Cell ** configuration;
+         std::vector<std::vector<Cell>> configuration;
 
-         int rows, cols;
-   };
-
-   class ConfigSet {
-
-      public:
-
-         ConfigSet();
-
-         int num();
-
-         std::string name(int index);
-
-         Config conf(int index) throw (NoSuchConfig);
-
-         void add(Config newConfig);
-
-         void empty();
-
-      private:
-
-         int setSize;
-
-         Config * set;
    };
 
    class Board {
 
       public:
 
-         Board(Config initial, int height, int width);
-
-         friend class Cell;
+         Board(Config initConfig);
 
          void next() throw (BoardStatic);
 
@@ -82,14 +70,11 @@ namespace peteredw {
 
       private:
 
-         Cell ** nextGen;
+         std::vector<std::vector<Cell>> nextGen;
 
-         Cell ** lastGen;
-
-         int rows, cols;
+         std::vector<std::vector<Cell>> lastGen;
+   
    };
-
-
 
    class Game {
 
@@ -99,21 +84,19 @@ namespace peteredw {
 
          void play();
 
-         void add_config(Config newConfig, int height, int width);
+         void add_config(Config newConfig);
 
       private:
 
-         ConfigSet configList;
+         std::vector<Config> configList;
 
-         int confChoice, numGens, rows, cols;
+         int confChoice, numGens;
 
          void config_menu();
 
          void user_gens();
 
          void run_game();
-
-         void dims(int height, int width);
    
    };
 

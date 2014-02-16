@@ -3,7 +3,9 @@ conwayslife
 
 A C++ implementation of Conway's Life for Oregon State University's Computer Science program.
 
-Project Status
---------------
+Compilation Information
+-----------------------
 
-This project has moved past the design stage (see initialDesign.odt for the design). It is now in the implementation stage.
+This program should compile without problems on Linux, as long as you have the library unistd.h for the usleep() function, which makes the output of generations very nice.
+
+Be sure to run this in a terminal emulator 80 cols wide and 22 rows high.

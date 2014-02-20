@@ -302,7 +302,7 @@ namespace peteredw {
       return false;
    }
 
-//I was said to have to pass in the row/col nums for
+//I was sad to have to pass in the row/col nums for
 //the Cell, but I can't think of a way the Cell could
 //efficiently determine this itself.
    int Cell::count_neighbors(const std::vector<std::vector<Cell>> &container,
